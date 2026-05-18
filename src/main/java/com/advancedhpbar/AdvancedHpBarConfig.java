@@ -122,6 +122,7 @@ public interface AdvancedHpBarConfig extends Config
         return 10;
     }
 
+    @Alpha
     @ConfigItem(
             keyName = "hpColor",
             name = "HP Color",
@@ -134,6 +135,7 @@ public interface AdvancedHpBarConfig extends Config
         return Color.GREEN;
     }
 
+    @Alpha
     @ConfigItem(
             keyName = "hpDamagedColor",
             name = "HP Damaged Color",
@@ -146,6 +148,7 @@ public interface AdvancedHpBarConfig extends Config
         return Color.RED;
     }
 
+    @Alpha
     @ConfigItem(
             keyName = "lowHpThreshold",
             name = "Low HP Threshold",
@@ -158,6 +161,7 @@ public interface AdvancedHpBarConfig extends Config
         return 5;
     }
 
+    @Alpha
     @ConfigItem(
             keyName = "lowHpColor",
             name = "Low HP Color",
@@ -170,6 +174,7 @@ public interface AdvancedHpBarConfig extends Config
         return Color.YELLOW;
     }
 
+    @Alpha
     @ConfigItem(
             keyName = "overhealColor",
             name = "Overheal Color",
@@ -195,6 +200,7 @@ public interface AdvancedHpBarConfig extends Config
         return new Color(228, 148, 148, 255);
     }
 
+    @Alpha
     @ConfigItem(
             keyName = "hpBackgroundColor",
             name = "HP Background Color",
@@ -247,6 +253,7 @@ public interface AdvancedHpBarConfig extends Config
         return true;
     }
 
+    @Alpha
     @ConfigItem(
             keyName = "prayerColor",
             name = "Prayer Color",
@@ -298,6 +305,7 @@ public interface AdvancedHpBarConfig extends Config
         return new Color(244, 224, 102, 255);
     }
 
+    @Alpha
     @ConfigItem(
             keyName = "prayerBackgroundColor",
             name = "Prayer Background Color",
@@ -335,6 +343,7 @@ public interface AdvancedHpBarConfig extends Config
         return false;
     }
 
+    @Alpha
     @ConfigItem(
             keyName = "prayerFlickColor",
             name = "Prayer Flick Color",
@@ -415,6 +424,7 @@ public interface AdvancedHpBarConfig extends Config
         return 0;
     }
 
+    @Alpha
     @ConfigItem(
             keyName = "npcHpColor",
             name = "NPC HP Color",
@@ -427,6 +437,7 @@ public interface AdvancedHpBarConfig extends Config
         return Color.GREEN;
     }
 
+    @Alpha
     @ConfigItem(
             keyName = "npcHpDamagedColor",
             name = "NPC HP Damaged Color",
