@@ -30,7 +30,8 @@ public class NpcHpBarOverlay extends Overlay
         this.client = client;
         this.config = config;
         setPosition(OverlayPosition.DYNAMIC);
-        setLayer(OverlayLayer.ABOVE_SCENE);
+        setPriority(Overlay.PRIORITY_HIGH);
+        setLayer(OverlayLayer.UNDER_WIDGETS);
     }
 
     @Override
@@ -81,7 +82,7 @@ public class NpcHpBarOverlay extends Overlay
                 client,
                 lp,
                 client.getTopLevelWorldView().getPlane(),
-                npc.getLogicalHeight() + config.npcBarZOffset() + 23
+                npc.getLogicalHeight() + config.npcBarZOffset()
         );
 
         if (canvasPoint == null)
@@ -93,7 +94,7 @@ public class NpcHpBarOverlay extends Overlay
         final int barHeight = config.npcBarHeight();
 
         final int x = canvasPoint.getX() + config.npcBarXOffset() - (barWidth / 2);
-        final int y = canvasPoint.getY() + config.npcBarYOffset() + 4;
+        final int y = canvasPoint.getY() + config.npcBarYOffset() - 10;
 
         final double fraction = Math.max(0.0, Math.min(1.0,
                 (double) healthRatio / (double) healthScale));
