@@ -15,7 +15,6 @@ import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
 
 /**
- * Redraws NPC healthbars after the vanilla ones have been blanked.
  * The local player is intentionally skipped so the main overlay owns
  * the player's bar.
  */
@@ -86,8 +85,6 @@ public class NpcHpBarOverlay extends Overlay
             return;
         }
 
-        // Width and vertical offset fall back to the global config unless an
-        // override supplies a value.
         final int barWidth = override != null ? override.getBarWidth() : config.npcBarWidth();
         final int heightOffset = override != null ? override.getBarHeightOffset() : 0;
 
