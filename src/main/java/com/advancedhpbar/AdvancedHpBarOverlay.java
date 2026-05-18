@@ -152,7 +152,12 @@ public class AdvancedHpBarOverlay extends Overlay
         final int overheal = Math.max(0, currentHp - maxHp);
         final int restoreValue = getRestoreValue("Hitpoints");
 
-        if (config.hpPerBox() == 0)
+        // When segments are disabled, treat the whole bar as one box spanning max HP.
+        final int hpPerBox = config.displaySegments()
+                ? config.hpPerBox()
+                : Math.max(1, Math.max(maxHp, currentHp));
+
+        if (hpPerBox == 0)
         {
             g.setColor(config.hpDamagedColor());
             g.fillRect(barX, barY, barWidth, hpBarHeight);
@@ -187,24 +192,24 @@ public class AdvancedHpBarOverlay extends Overlay
             return;
         }
 
-        final int numNormalBoxes = (int) Math.ceil((double) maxHp / config.hpPerBox());
-        final int lastNormalBoxCapacity = maxHp % config.hpPerBox() == 0
-                ? config.hpPerBox()
-                : maxHp % config.hpPerBox();
+        final int numNormalBoxes = (int) Math.ceil((double) maxHp / hpPerBox);
+        final int lastNormalBoxCapacity = maxHp % hpPerBox == 0
+                ? hpPerBox
+                : maxHp % hpPerBox;
 
         final int numOverhealBoxes = overheal > 0
-                ? (int) Math.ceil((double) overheal / config.hpPerBox())
+                ? (int) Math.ceil((double) overheal / hpPerBox)
                 : 0;
         final int lastOverhealBoxCapacity = overheal > 0
-                ? (overheal % config.hpPerBox() == 0 ? config.hpPerBox() : overheal % config.hpPerBox())
+                ? (overheal % hpPerBox == 0 ? hpPerBox : overheal % hpPerBox)
                 : 0;
 
         final int totalBoxes = numNormalBoxes + numOverhealBoxes;
         final int totalGaps = (totalBoxes - 1) * BOX_GAP;
 
-        final double lastNormalRatio = (double) lastNormalBoxCapacity / config.hpPerBox();
+        final double lastNormalRatio = (double) lastNormalBoxCapacity / hpPerBox;
         final double lastOverhealRatio = numOverhealBoxes > 0
-                ? (double) lastOverhealBoxCapacity / config.hpPerBox()
+                ? (double) lastOverhealBoxCapacity / hpPerBox
                 : 0.0;
 
         final double effectiveBoxCount = (numNormalBoxes - 1) + lastNormalRatio
@@ -220,8 +225,8 @@ public class AdvancedHpBarOverlay extends Overlay
         g.setColor(config.hpBackgroundColor());
         g.fillRect(barX, barY, barWidth, hpBarHeight);
 
-        drawNormalBoxes(g, barX, barY, currentHp, maxHp, numNormalBoxes, lastNormalBoxCapacity, fullBoxWidth, restoreValue);
-        drawOverhealBoxes(g, barX, barY, overheal, numOverhealBoxes, lastOverhealBoxCapacity, lastNormalRatio, numNormalBoxes, fullBoxWidth);
+        drawNormalBoxes(g, barX, barY, currentHp, maxHp, numNormalBoxes, lastNormalBoxCapacity, fullBoxWidth, restoreValue, hpPerBox);
+        drawOverhealBoxes(g, barX, barY, overheal, numOverhealBoxes, lastOverhealBoxCapacity, lastNormalRatio, numNormalBoxes, fullBoxWidth, hpPerBox);
     }
 
     private void drawNormalSingleBox(Graphics2D g, int boxX, int barY, int fillWidth, int currentHp)
@@ -238,7 +243,7 @@ public class AdvancedHpBarOverlay extends Overlay
 
     private void drawNormalBoxes(Graphics2D g, int barX, int barY, int currentHp, int maxHp,
                                  int numNormalBoxes, int lastNormalBoxCapacity,
-                                 double fullBoxWidth, int restoreValue)
+                                 double fullBoxWidth, int restoreValue, int hpPerBox)
     {
         final int hpBarHeight = config.hpBarHeight();
         final int healCap = Math.min(currentHp + restoreValue, maxHp);
@@ -246,15 +251,15 @@ public class AdvancedHpBarOverlay extends Overlay
         for (int i = 0; i < numNormalBoxes; i++)
         {
             final boolean isLast = (i == numNormalBoxes - 1);
-            final int boxCapacity = isLast ? lastNormalBoxCapacity : config.hpPerBox();
-            final double boxRatio = (double) boxCapacity / config.hpPerBox();
+            final int boxCapacity = isLast ? lastNormalBoxCapacity : hpPerBox;
+            final double boxRatio = (double) boxCapacity / hpPerBox;
 
             final double floatStart = barX + i * (fullBoxWidth + BOX_GAP);
             final double floatEnd = floatStart + fullBoxWidth * boxRatio;
             final int boxX = (int) Math.round(floatStart);
             final int thisBoxPixelWidth = (int) Math.round(floatEnd) - boxX;
 
-            final int boxMinHp = i * config.hpPerBox();
+            final int boxMinHp = i * hpPerBox;
             final int boxMaxHp = boxMinHp + boxCapacity;
             final int fill = Math.max(0, Math.min(currentHp - boxMinHp, boxCapacity));
 
@@ -285,15 +290,15 @@ public class AdvancedHpBarOverlay extends Overlay
 
     private void drawOverhealBoxes(Graphics2D g, int barX, int barY, int overheal,
                                    int numOverhealBoxes, int lastOverhealBoxCapacity,
-                                   double lastNormalRatio, int numNormalBoxes, double fullBoxWidth)
+                                   double lastNormalRatio, int numNormalBoxes, double fullBoxWidth, int hpPerBox)
     {
         final int hpBarHeight = config.hpBarHeight();
 
         for (int i = 0; i < numOverhealBoxes; i++)
         {
             final boolean isLast = (i == numOverhealBoxes - 1);
-            final int boxCapacity = isLast ? lastOverhealBoxCapacity : config.hpPerBox();
-            final double boxRatio = (double) boxCapacity / config.hpPerBox();
+            final int boxCapacity = isLast ? lastOverhealBoxCapacity : hpPerBox;
+            final double boxRatio = (double) boxCapacity / hpPerBox;
 
             final double normalWidth = (numNormalBoxes - 1) * (fullBoxWidth + BOX_GAP)
                     + fullBoxWidth * lastNormalRatio + BOX_GAP;
@@ -302,7 +307,7 @@ public class AdvancedHpBarOverlay extends Overlay
             final int boxX = (int) Math.round(floatStart);
             final int thisBoxPixelWidth = (int) Math.round(floatEnd) - boxX;
 
-            final int boxMinOverheal = i * config.hpPerBox();
+            final int boxMinOverheal = i * hpPerBox;
             final int fill = Math.max(0, Math.min(overheal - boxMinOverheal, boxCapacity));
             final int fillWidth = (int) Math.round(thisBoxPixelWidth * ((double) fill / boxCapacity));
 
