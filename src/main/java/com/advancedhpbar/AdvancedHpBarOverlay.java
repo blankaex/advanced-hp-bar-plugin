@@ -43,7 +43,7 @@ public class AdvancedHpBarOverlay extends Overlay
         this.plugin = plugin;
         this.itemStatService = itemstatservice;
         setPosition(OverlayPosition.DYNAMIC);
-        setLayer(OverlayLayer.ABOVE_SCENE);
+        setLayer(OverlayLayer.UNDER_WIDGETS);
     }
 
     @Override
