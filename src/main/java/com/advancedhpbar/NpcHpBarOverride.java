@@ -1,0 +1,302 @@
+package com.advancedhpbar;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Per-NPC overrides for the redrawn NPC health bar.
+ **/
+enum NpcHpBarOverride
+{
+    GEMSTONE_CRAB_1(14780, 125, 0, true),
+    GEMSTONE_CRAB_2(14779, 125, 0, true),
+    BLUE_MOON(13013, 0, 0, false),
+    BLOOD_MOON(13011, 0, 0, false),
+    ECLIPSE_MOON(13012, 0, 0, false),
+    CORRUPTED_HUNLLEF_1(9035, 125, 0, true),
+    CORRUPTED_HUNLLEF_2(9036, 125, 0, true),
+    CORRUPTED_HUNLLEF_3(9037, 125, 0, true),
+    CORRUPTED_HUNLLEF_4(9038, 125, 0, true),
+    CRYSTALLINE_HUNLLEF_1(9021, 125, 0, true),
+    CRYSTALLINE_HUNLLEF_2(9022, 125, 0, true),
+    CRYSTALLINE_HUNLLEF_3(9023, 125, 0, true),
+    CRYSTALLINE_HUNLLEF_4(9024, 125, 0, true),
+    SCURRIUS_SOLO(7222, 125, 0, true),
+    SCURRIUS_GROUP(7221, 125, 0, true),
+    SCURRIUS_DEADMAN(15548, 125, 0, true),
+    GIANT_MOLE(5779, 125, 0, true),
+    SARACHNIS(8713, 125, 0, true),
+    KALPHITE_QUEEN_AIRBORNE_1(965, 125, 0, true),
+    KALPHITE_QUEEN_AIRBORNE_2(4304, 125, 0, true),
+    KALPHITE_QUEEN_CRAWLING_1(963, 125, 0, true),
+    KALPHITE_QUEEN_CRAWLING_2(4303, 125, 0, true),
+    NEX_1(11278, 125, 0, true),
+    NEX_2(11279, 125, 0, true),
+    NEX_3(11280, 125, 0, true),
+    NEX_4(11281, 125, 0, true),
+    NEX_5(11282, 125, 0, true),
+    CORPOREAL_BEAST(319, 125, 0, true),
+    CALVARION_NORMAL(11993, 125, 0, true),
+    CALVARION_ENRAGED(11994, 125, 0, true),
+    VETION_NORMAL(6611, 125, 0, true),
+    VETION_ENRAGED(6612, 125, 0, true),
+    SPINDEL(11998, 125, 0, true),
+    VENENATIS(6610, 125, 0, true),
+    ARTIO(11992, 125, 0, true),
+    CALLISTO(6609, 125, 0, true),
+    BRUTUS_1(15626, 100, 0, true),
+    BRUTUS_2(15627, 100, 0, true),
+    AMOXLIATL(13685, 0,0, false),
+    BRANDA_THE_FIRE_QUEEN_1(12596, 125, 0, true),
+    BRANDA_THE_FIRE_QUEEN_2(14148, 125, 0, true),
+    ELDRIC_THE_ICE_KING_1(14149, 125, 0, true),
+    ELDRIC_THE_ICE_KING_2(14147, 125, 0, true),
+    DOOM_OF_MOKHAIOTL_1(14707, 125, 0, true),
+    DOOM_OF_MOKHAIOTL_2(14708, 125, 0, true),
+    DOOM_OF_MOKHAIOTL_3(14709, 125, 0, true),
+    ZULRAH_MAGMA(2043, 125, 0, true),
+    ZULRAH_SERPENTINE(2042, 125, 0, true),
+    ZULRAH_TANZANITE(2044, 125, 0, true),
+    VORKATH(8059, 125, 0, true),
+    VORKATH_DS2_1(8058, 125, 0, true),
+    VORKATH_DS2_2(8060, 125, 0, true),
+    VORKATH_POST_QUEST_1(8059, 125, 0, true),
+    VORKATH_POST_QUEST_2(8061, 125, 0, true),
+    PHANTOM_MUSPAH_MELEE(12078, 125, 0, true),
+    PHANTOM_MUSPAH_POST_SHIELD(12080, 125, 0, true),
+    PHANTOM_MUSPAH_RANGED(12077, 125, 0, true),
+    PHANTOM_MUSPAH_SHIELDED(12079, 125, 0, true),
+    PHANTOM_MUSPAH_TELEPORTING(12082, 125, 0, true),
+    THE_NIGHTMARE_1(378, 125, 0, true),
+    THE_NIGHTMARE_2(9425, 125, 0, true),
+    THE_NIGHTMARE_3(9426, 125, 0, true),
+    THE_NIGHTMARE_4(9427, 125, 0, true),
+    THE_NIGHTMARE_5(9428, 125, 0, true),
+    THE_NIGHTMARE_6(9429, 125, 0, true),
+    THE_NIGHTMARE_7(9430, 125, 0, true),
+    THE_NIGHTMARE_8(9431, 125, 0, true),
+    THE_NIGHTMARE_9(9432, 125, 0, true),
+    THE_NIGHTMARE_10(9433, 125, 0, true),
+    THE_NIGHTMARE_11(9460, 125, 0, true),
+    JUDGE_OF_YAMA(14180, 125, 0, true),
+    JUDGE_OF_YAMA_KINGDOM_DIVIDED_1(10936, 125, 0, true),
+    JUDGE_OF_YAMA_KINGDOM_DIVIDED_2(10938, 125, 0, true),
+    YAMA_NORMAL(14176, 125, 0, true),
+    YAMA_OCCUPIED(124, 125, 0, true),
+    YAMA_UNOCCUPIED(14157, 125, 0, true),
+    DUKE_SUCELLUS_AWAKENED_AWAKE(12191, 125, 0, true),
+    DUKE_SUCELLUS_POST_QUEST_AWAKE(12191, 125, 0, true),
+    DUKE_SUCELLUS_QUEST_AWAKE(12195, 125, 0, true),
+    LEVIATHAN_AWAKENED(12214, 125, 0, true),
+    LEVIATHAN_QUEST_1(12215, 125, 0, true),
+    LEVIATHAN_QUEST_2(12219, 125, 0, true),
+    LEVIATHAN(12221, 125, 0, true),
+    WHISPERER_AWAKENED_1(12204, 125, 0, true),
+    WHISPERER_AWAKENED_2(12205, 125, 0, true),
+    WHISPERER_POST_QUEST_1(12204, 125, 0, true),
+    WHISPERER_POST_QUEST_2(12205, 125, 0, true),
+    WHISPERER_QUEST_1(12206, 125, 0, true),
+    WHISPERER_QUEST_2(12207, 125, 0, true),
+    VARDOVIS_AWAKENED_1(12223, 125, 0, true),
+    VARDOVIS_AWAKENED_2(12426, 125, 0, true),
+    VARDOVIS_QUEST_1(12224, 125, 0, true),
+    VARDOVIS_QUEST_2(12228, 125, 0, true),
+    VARDOVIS_QUEST_3(12425, 125, 0, true),
+    HESPORI(8583, 100, 0, true),
+    HESPORI_NIGHT_AT_THREATRE(11192, 100, 0, true),
+    SHELLBANE_GRYPHON(14860, 125, 0, true),
+    SHELLBANE_GRYPHON_TROUBLED_TORTUGANS(15010, 125, 0, true),
+    DAWN_1(7852, 100, 0, true),
+    DAWN_2(7853, 100, 0, true),
+    DAWN_3(7884, 100, 0, true),
+    DAWN_4(7885, 100, 0, true),
+    DUSK_FIRST_FORM_1(7851, 100, 0, true),
+    DUSK_FIRST_FORM_2(7854, 100, 0, true),
+    DUSK_FIRST_FORM_3(7855, 100, 0, true),
+    DUSK_FIRST_FORM_4(7882, 100, 0, true),
+    DUSK_FIRST_FORM_5(7883, 100, 0, true),
+    DUSK_FIRST_FORM_6(7886, 100, 0, true),
+    DUSK_SECOND_FORM_1(7887, 100, 0, true),
+    DUSK_SECOND_FORM_2(7888, 100, 0, true),
+    DUSK_SECOND_FORM_3(7889, 100, 0, true),
+    ABYSSAL_SIRE_FIRST_PHASE_1(5886, 100, 0, true),
+    ABYSSAL_SIRE_FIRST_PHASE_2(5887, 100, 0, true),
+    ABYSSAL_SIRE_FIRST_PHASE_3(5888, 100, 0, true),
+    ABYSSAL_SIRE_SECOND_PHASE_1(5889, 100, 0, true),
+    ABYSSAL_SIRE_SECOND_PHASE_2(5890, 100, 0, true),
+    ABYSSAL_SIRE_THIRD_PHASE_1(5891, 100, 0, true),
+    ABYSSAL_SIRE_THIRD_PHASE_2(5908, 100, 0, true),
+    CERBERUS_1(5862, 100, 0, true),
+    CERBERUS_2(5863, 100, 0, true),
+    CERBERUS_3(5866, 100, 0, true),
+    ARAXXOR(13668, 100, 0, true),
+    ALCHEMICAL_HYDRA_ELECTRIC_1(8619, 125, 0, true),
+    ALCHEMICAL_HYDRA_ELECTRIC_2(8617, 125, 0, true),
+    ALCHEMICAL_HYDRA_EXTINGUISHED_1(8621, 125, 0, true),
+    ALCHEMICAL_HYDRA_EXTINGUISHED_2(8622, 125, 0, true),
+    ALCHEMICAL_HYDRA_FIRE_1(8620, 125, 0, true),
+    ALCHEMICAL_HYDRA_FIRE_2(8618, 125, 0, true),
+    ALCHEMICAL_HYDRA_SERPENTINE_1(8615, 125, 0, true),
+    ALCHEMICAL_HYDRA_SERPENTINE_2(8616, 125, 0, true),
+    TZKAL_ZUK(7706, 125, 0, true),
+    SOL_HEREDIT_1(12827, 125, 0, true),
+    SOL_HEREDIT_2(12821, 125, 0, true),
+    SOL_HEREDIT_DEADMAN(15554, 125, 0, true),
+    TEMPOROSS_ENRAGED(10575, 0, 0, false),
+    TEMPOROSS_SUBMERGED(10574, 125, 0, true),
+    TEMPOROSS_SURFACED(10572, 125, 0, false),
+    ZALCANO_ARMOURED(9049, 0, 0, false),
+    ZALCANO_WEAKENED(9050, 0, 0, false),
+    GREAT_OLM_HEAD_CHALLENGE(7554, 125, 0, true),
+    GREAT_OLM_HEAD_NORMAL(7551, 125, 0, true),
+    GREAT_OLM_LEFT_CLAW_CHALLENGE(7555, 125, 0, true),
+    GREAT_OLM_LEFT_CLAW_NORMAL(7552, 125, 0, true),
+    GREAT_OLM_RIGHT_CLAW_CHALLENGE(7553, 125, 0, true),
+    GREAT_OLM_RIGHT_CLAW_NORMAL(7550, 125, 0, true),
+    THE_MAIDEN_OF_SUGADINTI_30_HP(8363, 125, 0, true),
+    THE_MAIDEN_OF_SUGADINTI_50_HP(8362, 125, 0, true),
+    THE_MAIDEN_OF_SUGADINTI_70_HP(8361, 125, 0, true),
+    THE_MAIDEN_OF_SUGADINTI_ENTRY(10814, 125, 0, true),
+    THE_MAIDEN_OF_SUGADINTI_HARD(10822, 125, 0, true),
+    THE_MAIDEN_OF_SUGADINTI_NORMAL(8360, 125, 0, true),
+    PESTILENT_BLOAT_DEADMAN(15556, 125, 0, true),
+    PESTILENT_BLOAT_ENTRY(10812, 125, 0, true),
+    PESTILENT_BLOAT_HARD(10813, 125, 0, true),
+    PESTILENT_BLOAT_NORMAL(8359, 125, 0, true),
+    SOTETSEG_ENTRY_1(10864, 125, 0, true),
+    SOTETSEG_ENTRY_2(10865, 125, 0, true),
+    SOTETSEG_HARD_1(10867, 125, 0, true),
+    SOTETSEG_HARD_2(10868, 125, 0, true),
+    SOTETSEG_NORMAL_1(8387, 125, 0, true),
+    SOTETSEG_NORMAL_2(8388, 125, 0, true),
+    XARPUS_1(8338, 125, 0, true),
+    XARPUS_2(8339, 125, 0, true),
+    XARPUS_3(10766, 125, 0, true),
+    XARPUS_4(10767, 125, 0, true),
+    XARPUS_5(10769, 125, 0, true),
+    XARPUS_6(10773, 125, 0, true),
+    XARPUS_7(8341, 125, 0, true),
+    XARPUS_8(10770, 125, 0, true),
+    XARPUS_9(10771, 125, 0, true),
+    XARPUS_ENTRY(10768, 125, 0, true),
+    XARPUS_HARD(10772, 125, 0, true),
+    XARPUS_NORMAL(8340, 125, 0, true),
+    VERZIK_VITUR_ENTRY_FIRST_PHASE_1(10830, 0, 0, false),
+    VERZIK_VITUR_ENTRY_FIRST_PHASE_2(10831, 0, 0, false),
+    VERZIK_VITUR_ENTRY_FIRST_PHASE_3(10832, 0, 0, false),
+    VERZIK_VITUR_ENTRY_SECOND_PHASE_1(10833, 125, 0, true),
+    VERZIK_VITUR_ENTRY_SECOND_PHASE_2(10834, 125, 0, true),
+    VERZIK_VITUR_ENTRY_THIRD_PHASE_1(10835, 125, 0, true),
+    VERZIK_VITUR_ENTRY_THIRD_PHASE_2(10836, 125, 0, true),
+    VERZIK_VITUR_HARD_FIRST_PHASE_1(10847, 0, 0, false),
+    VERZIK_VITUR_HARD_FIRST_PHASE_2(10848, 0, 0, false),
+    VERZIK_VITUR_HARD_FIRST_PHASE_3(10849, 0, 0, false),
+    VERZIK_VITUR_HARD_SECOND_PHASE_1(10833, 125, 0, true),
+    VERZIK_VITUR_HARD_SECOND_PHASE_2(10851, 125, 0, true),
+    VERZIK_VITUR_HARD_THIRD_PHASE_1(10852, 125, 0, true),
+    VERZIK_VITUR_HARD_THIRD_PHASE_2(10853, 125, 0, true),
+    VERZIK_VITUR_NORMAL_FIRST_PHASE_1(8369, 0, 0, false),
+    VERZIK_VITUR_NORMAL_FIRST_PHASE_2(8370, 0, 0, false),
+    VERZIK_VITUR_NORMAL_FIRST_PHASE_3(8371, 0, 0, false),
+    VERZIK_VITUR_NORMAL_SECOND_PHASE_1(8372, 125, 0, true),
+    VERZIK_VITUR_NORMAL_SECOND_PHASE_2(8373, 125, 0, true),
+    VERZIK_VITUR_NORMAL_THIRD_PHASE_1(8374, 125, 0, true),
+    VERZIK_VITUR_NORMAL_THIRD_PHASE_2(8375, 125, 0, true),
+    AKKHA_1(11789, 125, 0, true),
+    AKKHA_2(11790, 125, 0, true),
+    AKKHA_3(11791, 125, 0, true),
+    AKKHA_4(11792, 125, 0, true),
+    AKKHA_5(11793, 125, 0, true),
+    AKKHA_6(11794, 125, 0, true),
+    AKKHA_7(11795, 125, 0, true),
+    AKKHA_8(11796, 125, 0, true),
+    AKKHAS_PHANTOM(11777, 125, 0, true),
+    AKKHAS_SHADOW_1(11797, 125, 0, true),
+    AKKHAS_SHADOW_2(11798, 125, 0, true),
+    AKKHAS_SHADOW_3(11799, 125, 0, true),
+    BA_BA_1(11778, 125, 0, true),
+    BA_BA_2(11779, 125, 0, true),
+    BA_BA_3(11780, 125, 0, true),
+    BA_BAS_PHANTOM(11775, 125, 0, true),
+    KEPHRI_1(11722, 125, 0, true),
+    KEPHRI_2(11720, 125, 0, true),
+    KEPHRI_AGGRESSIVE(11721, 125, 0, true),
+    KEPHRI_SHIELDED(11719, 0, 0, false),
+    KEPHRIS_PHANTOM(11776, 125, 0, true),
+    ZEBAK(11733, 125, 0, true),
+    ZEBAK_ENRAGED(11732, 125, 0, true),
+    ZEBAK_NORMAL(11730, 125, 0, true),
+    ZEBAKS_PHANTOM(11774, 125, 0, true),
+    ZEBAKS_TAIL_1(11731, 125, 0, true),
+    ZEBAKS_TAIL_2(11734, 125, 0, true),
+    OBELISK_TOA_1(11752, 125, 0, true),
+    OBELISK_TOA_2(11751, 125, 0, true),
+    OBELISK_TOA_3(11750, 125, 0, true),
+    ELIDINIS_WARDEN_DEADMAN(15552, 125, 0, true),
+    ELIDINIS_WARDEN_ACTIVE_1(11753, 125, 0, true),
+    ELIDINIS_WARDEN_ACTIVE_2(11754, 125, 0, true),
+    ELIDINIS_WARDEN_CHARGING_1(11746, 125, 0, true),
+    ELIDINIS_WARDEN_CHARGING_2(11748, 125, 0, true),
+    ELIDINIS_WARDEN_CORE_EJECTED(11755, 125, 0, true),
+    ELIDINIS_WARDEN_DESTROYED(11759, 125, 0, true),
+    ELIDINIS_WARDEN_DAMAGED(11761, 125, 0, true),
+    ELIDINIS_WARDEN_INVULNERABLE(11763, 125, 0, true),
+    TUMEKENS_WARDEN_DEADMAN(15551, 125, 0, true),
+    TUMEKENS_WARDEN_ACTIVE_1(11756, 125, 0, true),
+    TUMEKENS_WARDEN_ACTIVE_2(11757, 125, 0, true),
+    TUMEKENS_WARDEN_CHARGING_1(11747, 125, 0, true),
+    TUMEKENS_WARDEN_CHARGING_2(11749, 125, 0, true),
+    TUMEKENS_WARDEN_CORE_EJECTED(11758, 125, 0, true),
+    TUMEKENS_WARDEN_DESTROYED(11760, 125, 0, true),
+    TUMEKENS_WARDEN_DAMAGED(11762, 125, 0, true),
+    TUMEKENS_WARDEN_INVULNERABLE(11764, 125, 0, true),
+    ;
+
+    private final int npcId;
+    private final int barWidth;
+    private final int barHeightOffset;
+    private final boolean visible;
+
+    NpcHpBarOverride(int npcId, int barWidth, int barHeightOffset, boolean visible)
+    {
+        this.npcId = npcId;
+        this.barWidth = barWidth;
+        this.barHeightOffset = barHeightOffset;
+        this.visible = visible;
+    }
+
+    int getNpcId()
+    {
+        return npcId;
+    }
+
+    int getBarWidth()
+    {
+        return barWidth;
+    }
+
+    int getBarHeightOffset()
+    {
+        return barHeightOffset;
+    }
+
+    boolean isVisible()
+    {
+        return visible;
+    }
+
+    private static final Map<Integer, NpcHpBarOverride> BY_ID = new HashMap<>();
+
+    static
+    {
+        for (final NpcHpBarOverride override : values())
+        {
+            BY_ID.put(override.npcId, override);
+        }
+    }
+
+    static NpcHpBarOverride forNpcId(int npcId)
+    {
+        return BY_ID.get(npcId);
+    }
+}
