@@ -30,7 +30,7 @@ public class NpcHpBarOverlay extends Overlay
         this.client = client;
         this.config = config;
         setPosition(OverlayPosition.DYNAMIC);
-        setLayer(OverlayLayer.ABOVE_SCENE);
+        setLayer(OverlayLayer.UNDER_WIDGETS);
     }
 
     @Override
