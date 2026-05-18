@@ -15,7 +15,7 @@ import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
 
 /**
- * Redraws NPC healthbars after the vanilla ones have been blanked
+ * Redraws NPC healthbars after the vanilla ones have been blanked.
  * The local player is intentionally skipped so the main overlay owns
  * the player's bar.
  */
@@ -64,6 +64,14 @@ public class NpcHpBarOverlay extends Overlay
 
     private void drawHealthBar(Graphics2D g, NPC npc)
     {
+        final NpcHpBarOverride override = NpcHpBarOverride.forNpcId(npc.getId());
+
+        // An override exists and has explicitly hidden this NPC's bar.
+        if (override != null && !override.isVisible())
+        {
+            return;
+        }
+
         final int healthScale = npc.getHealthScale();
         final int healthRatio = npc.getHealthRatio();
 
@@ -78,6 +86,11 @@ public class NpcHpBarOverlay extends Overlay
             return;
         }
 
+        // Width and vertical offset fall back to the global config unless an
+        // override supplies a value.
+        final int barWidth = override != null ? override.getBarWidth() : config.npcBarWidth();
+        final int heightOffset = override != null ? override.getBarHeightOffset() : 0;
+
         final Point canvasPoint = Perspective.localToCanvas(
                 client,
                 lp,
@@ -90,11 +103,10 @@ public class NpcHpBarOverlay extends Overlay
             return;
         }
 
-        final int barWidth = config.npcBarWidth();
         final int barHeight = config.npcBarHeight();
 
         final int x = canvasPoint.getX() + config.npcBarXOffset() - (barWidth / 2);
-        final int y = canvasPoint.getY() + config.npcBarYOffset() - 10;
+        final int y = canvasPoint.getY() + config.npcBarYOffset() - 10 - heightOffset;
 
         final double fraction = Math.max(0.0, Math.min(1.0,
                 (double) healthRatio / (double) healthScale));
