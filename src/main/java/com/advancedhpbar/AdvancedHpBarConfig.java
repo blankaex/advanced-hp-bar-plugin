@@ -126,7 +126,6 @@ public interface AdvancedHpBarConfig extends Config
             name = "HP Per Box",
             description = "How many HP points each box segment represents",
             section = hpSection,
-            hidden = true,
             position = 1
     )
     default int hpPerBox()
