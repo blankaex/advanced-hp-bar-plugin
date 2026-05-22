@@ -250,6 +250,11 @@ enum NpcHpBarOverride
     TUMEKENS_WARDEN_DESTROYED(11760, 125, 0, true),
     TUMEKENS_WARDEN_DAMAGED(11762, 125, 0, true),
     TUMEKENS_WARDEN_INVULNERABLE(11764, 125, 0, true),
+
+    // SAILING
+    RAFT(15186, 100, 10, true),
+    SKIFF(15187, 100, 10, true),
+    SLOOP(15188, 100, 10, true),
     ;
 
     private final int npcId;

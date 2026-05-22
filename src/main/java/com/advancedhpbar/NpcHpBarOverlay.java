@@ -6,9 +6,10 @@ import javax.inject.Inject;
 import net.runelite.api.Actor;
 import net.runelite.api.Client;
 import net.runelite.api.NPC;
-import net.runelite.api.Perspective;
 import net.runelite.api.Player;
 import net.runelite.api.Point;
+import net.runelite.api.Perspective;
+import net.runelite.api.WorldView;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
@@ -37,23 +38,29 @@ public class NpcHpBarOverlay extends Overlay
     public Dimension render(Graphics2D g)
     {
         final Player localPlayer = client.getLocalPlayer();
+        final WorldView topLevelWv = client.getTopLevelWorldView();
+        final WorldView playerWv = localPlayer.getWorldView();
 
-        for (final NPC npc : client.getTopLevelWorldView().npcs())
+        drawHealthBars(g, topLevelWv, localPlayer);
+
+        if (playerWv != topLevelWv)
         {
-            if (npc == null)
-            {
-                continue;
-            }
-
-            if (isLocalPlayer(npc, localPlayer))
-            {
-                continue;
-            }
-
-            drawHealthBar(g, npc);
+            drawHealthBars(g, playerWv, localPlayer);
         }
 
         return null;
+    }
+
+    private void drawHealthBars(Graphics2D g, WorldView wv, Player localPlayer)
+    {
+        for (NPC npc : wv.npcs())
+        {
+            if (npc == null || isLocalPlayer(npc, localPlayer))
+            {
+                continue;
+            }
+            drawHealthBar(g, npc);
+        }
     }
 
     private boolean isLocalPlayer(Actor actor, Player localPlayer)
