@@ -1,8 +1,11 @@
-package com.advancedhpbar;
+package com.advancedhpbar.overlay;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import javax.inject.Inject;
+
+import com.advancedhpbar.AdvancedHpBarConfig;
+import com.advancedhpbar.sprite.NpcHpBarOverride;
 import net.runelite.api.Actor;
 import net.runelite.api.Client;
 import net.runelite.api.NPC;

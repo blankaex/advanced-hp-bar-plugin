@@ -1,4 +1,4 @@
-package com.advancedhpbar;
+package com.advancedhpbar.sprite;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Per-NPC overrides for the redrawn NPC health bar.
  **/
-enum NpcHpBarOverride
+public enum NpcHpBarOverride
 {
     GEMSTONE_CRAB_1(14780, 125, 0, true),
     GEMSTONE_CRAB_2(14779, 125, 0, true),
@@ -270,22 +270,22 @@ enum NpcHpBarOverride
         this.visible = visible;
     }
 
-    int getNpcId()
+    public int getNpcId()
     {
         return npcId;
     }
 
-    int getBarWidth()
+    public int getBarWidth()
     {
         return barWidth;
     }
 
-    int getBarHeightOffset()
+    public int getBarHeightOffset()
     {
         return barHeightOffset;
     }
 
-    boolean isVisible()
+    public boolean isVisible()
     {
         return visible;
     }
@@ -300,7 +300,7 @@ enum NpcHpBarOverride
         }
     }
 
-    static NpcHpBarOverride forNpcId(int npcId)
+    public static NpcHpBarOverride forNpcId(int npcId)
     {
         return BY_ID.get(npcId);
     }

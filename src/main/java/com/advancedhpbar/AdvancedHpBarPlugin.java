@@ -1,5 +1,8 @@
 package com.advancedhpbar;
 
+import com.advancedhpbar.overlay.AdvancedHpBarOverlay;
+import com.advancedhpbar.overlay.NpcHpBarOverlay;
+import com.advancedhpbar.sprite.BlankHpBarOverride;
 import com.google.inject.Provides;
 import java.io.InputStream;
 import javax.inject.Inject;
@@ -64,7 +67,7 @@ public class AdvancedHpBarPlugin extends Plugin
         overlayManager.remove(npcHpBarOverlay);
         clientThread.invoke(() ->
         {
-            spriteManager.removeSpriteOverrides(BlankHealthBarOverride.values());
+            spriteManager.removeSpriteOverrides(BlankHpBarOverride.values());
             client.resetHealthBarCaches();
         });
         clientThread.invokeLater(client::resetHealthBarCaches);
@@ -86,20 +89,20 @@ public class AdvancedHpBarPlugin extends Plugin
             return false;
         }
 
-        String fileName = BlankHealthBarOverride.values()[0].getFileName();
-        try (InputStream in = BlankHealthBarOverride.class.getResourceAsStream(fileName))
+        String fileName = BlankHpBarOverride.values()[0].getFileName();
+        try (InputStream in = BlankHpBarOverride.class.getResourceAsStream(fileName))
         {
             if (in != null)
             {
                 log.info("[AdvancedHpBar] blank.png FOUND ('{}') relative to {}",
-                        fileName, BlankHealthBarOverride.class.getPackage().getName());
+                        fileName, BlankHpBarOverride.class.getPackage().getName());
             }
             else
             {
                 log.warn("[AdvancedHpBar] blank.png NOT FOUND - getResourceAsStream('{}') returned null. "
                                 + "Expected at src/main/resources/{}/{}",
                         fileName,
-                        BlankHealthBarOverride.class.getPackage().getName().replace('.', '/'),
+                        BlankHpBarOverride.class.getPackage().getName().replace('.', '/'),
                         fileName);
             }
         }
@@ -108,10 +111,10 @@ public class AdvancedHpBarPlugin extends Plugin
             log.warn("[AdvancedHpBar] error while checking blank.png resource", ex);
         }
 
-        spriteManager.addSpriteOverrides(BlankHealthBarOverride.values());
+        spriteManager.addSpriteOverrides(BlankHpBarOverride.values());
         client.resetHealthBarCaches();
         log.info("[AdvancedHpBar] applied {} sprite overrides and reset health bar caches",
-                BlankHealthBarOverride.values().length);
+                BlankHpBarOverride.values().length);
         return true;
     }
 
@@ -121,7 +124,7 @@ public class AdvancedHpBarPlugin extends Plugin
         lastTickTime = System.currentTimeMillis();
     }
 
-    long millisSinceTick()
+    public long millisSinceTick()
     {
         return System.currentTimeMillis() - lastTickTime;
     }
