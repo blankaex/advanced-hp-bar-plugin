@@ -41,19 +41,6 @@ public interface AdvancedHpBarConfig extends Config
     // -------------------------------------------------------------------------
     // General
     // -------------------------------------------------------------------------
-
-    @ConfigItem(
-            keyName = "alwaysOn",
-            name = "Always Show",
-            description = "Always display the bar, or only during combat",
-            section = generalSection,
-            position = 0
-    )
-    default boolean alwaysOn()
-    {
-        return false;
-    }
-
     @ConfigItem(
             keyName = "barWidth",
             name = "Bar Width",
@@ -110,11 +97,23 @@ public interface AdvancedHpBarConfig extends Config
     // HP Bar
     // -------------------------------------------------------------------------
     @ConfigItem(
+            keyName = "hpBarVisibility",
+            name = "Visibility",
+            description = "When to display the HP bar",
+            section = hpSection,
+            position = 0
+    )
+    default HpBarVisibility hpBarVisibility()
+    {
+        return HpBarVisibility.IN_COMBAT;
+    }
+
+    @ConfigItem(
             keyName = "displaySegments",
             name = "Display Segments",
             description = "Divide the HP bar into discrete box segments",
             section = hpSection,
-            position = 0
+            position = 1
     )
     default boolean displaySegments()
     {
@@ -126,7 +125,7 @@ public interface AdvancedHpBarConfig extends Config
             name = "HP Per Box",
             description = "How many HP points each box segment represents",
             section = hpSection,
-            position = 1
+            position = 2
     )
     default int hpPerBox()
     {
@@ -139,7 +138,7 @@ public interface AdvancedHpBarConfig extends Config
             name = "HP Color",
             description = "Color of the HP fill",
             section = hpSection,
-            position = 2
+            position = 3
     )
     default Color hpColor()
     {
@@ -152,7 +151,7 @@ public interface AdvancedHpBarConfig extends Config
             name = "HP Damaged Color",
             description = "Color shown for the damaged (missing) portion of HP",
             section = hpSection,
-            position = 3
+            position = 4
     )
     default Color hpDamagedColor()
     {
@@ -165,7 +164,7 @@ public interface AdvancedHpBarConfig extends Config
             name = "Low HP Threshold",
             description = "HP value at which the bar switches to the low HP color. Set to 0 to disable",
             section = hpSection,
-            position = 4
+            position = 5
     )
     default int lowHpThreshold()
     {
@@ -178,7 +177,7 @@ public interface AdvancedHpBarConfig extends Config
             name = "Low HP Color",
             description = "Color of the HP bar when HP drops below the low HP threshold",
             section = hpSection,
-            position = 5
+            position = 6
     )
     default Color lowHpColor()
     {
@@ -191,7 +190,7 @@ public interface AdvancedHpBarConfig extends Config
             name = "Overheal Color",
             description = "Color of the HP bar portion above your base max HP",
             section = hpSection,
-            position = 6
+            position = 7
     )
     default Color overhealColor()
     {
@@ -204,7 +203,7 @@ public interface AdvancedHpBarConfig extends Config
             name = "Food heal preview color",
             description = "Color shown for potential HP restored by hovered food",
             section = hpSection,
-            position = 7
+            position = 8
     )
     default Color foodHealColor()
     {
@@ -217,7 +216,7 @@ public interface AdvancedHpBarConfig extends Config
             name = "HP Background Color",
             description = "Background color behind the HP boxes",
             section = hpSection,
-            position = 8
+            position = 9
     )
     default Color hpBackgroundColor()
     {
@@ -230,7 +229,7 @@ public interface AdvancedHpBarConfig extends Config
             name = "HP bar height",
             description = "Height of the HP bar in pixels",
             section = hpSection,
-            position = 9
+            position = 10
     )
     default int hpBarHeight()
     {
@@ -241,27 +240,15 @@ public interface AdvancedHpBarConfig extends Config
     // -------------------------------------------------------------------------
 
     @ConfigItem(
-            keyName = "showPrayerBar",
-            name = "Show Prayer Bar",
-            description = "Display a thin prayer bar below the HP bar",
+            keyName = "prayerBarVisibility",
+            name = "Visibility",
+            description = "When to display the prayer bar below the HP bar",
             section = prayerSection,
             position = 0
     )
-    default boolean showPrayerBar()
+    default PrayerBarVisibility prayerBarVisibility()
     {
-        return true;
-    }
-
-    @ConfigItem(
-            keyName = "showPrayerBarWhenActive",
-            name = "Show Prayer Bar When Active",
-            description = "Show the prayer bar whenever a prayer is active, even when out of combat",
-            section = prayerSection,
-            position = 1
-    )
-    default boolean showPrayerBarWhenActive()
-    {
-        return true;
+        return PrayerBarVisibility.ACTIVE_OR_COMBAT;
     }
 
     @Alpha

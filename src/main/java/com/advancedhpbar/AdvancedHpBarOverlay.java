@@ -57,9 +57,43 @@ public class AdvancedHpBarOverlay extends Overlay
         }
 
         final boolean inCombat = localPlayer.getHealthScale() >= 0;
-        final boolean showHpBar = inCombat || config.alwaysOn();
-        final boolean showPrayerBar = config.showPrayerBar()
-                && (showHpBar || (config.showPrayerBarWhenActive() && isAnyPrayerActive()));
+        final boolean prayerActive = isAnyPrayerActive();
+
+        final boolean showHpBar;
+        switch (config.hpBarVisibility())
+        {
+            case ALWAYS:
+                showHpBar = true;
+                break;
+            case NEVER:
+                showHpBar = false;
+                break;
+            case IN_COMBAT:
+            default:
+                showHpBar = inCombat;
+                break;
+        }
+
+        final boolean showPrayerBar;
+        switch (config.prayerBarVisibility())
+        {
+            case ALWAYS:
+                showPrayerBar = true;
+                break;
+            case NEVER:
+                showPrayerBar = false;
+                break;
+            case ACTIVE_ONLY:
+                showPrayerBar = prayerActive;
+                break;
+            case COMBAT_ONLY:
+                showPrayerBar = inCombat;
+                break;
+            case ACTIVE_OR_COMBAT:
+            default:
+                showPrayerBar = prayerActive || inCombat;
+                break;
+        }
 
         if (!showHpBar && !showPrayerBar)
         {
