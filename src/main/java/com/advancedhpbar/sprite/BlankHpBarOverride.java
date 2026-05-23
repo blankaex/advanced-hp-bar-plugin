@@ -1,4 +1,4 @@
-package com.advancedhpbar;
+package com.advancedhpbar.sprite;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +11,7 @@ import net.runelite.client.game.SpriteOverride;
  * can be drawn cleanly on top.
  */
 @RequiredArgsConstructor
-enum BlankHealthBarOverride implements SpriteOverride
+public enum BlankHpBarOverride implements SpriteOverride
 {
     // Standard health (red)
     HEALTH_30_FRONT(SpriteID.StandardHealth30.FRONT),
@@ -44,6 +44,6 @@ enum BlankHealthBarOverride implements SpriteOverride
     @Override
     public String getFileName()
     {
-        return "blank.png";
+        return "osrs/hp/blank.png";
     }
 }

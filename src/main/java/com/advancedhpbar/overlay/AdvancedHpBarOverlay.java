@@ -1,5 +1,7 @@
-package com.advancedhpbar;
+package com.advancedhpbar.overlay;
 
+import com.advancedhpbar.AdvancedHpBarConfig;
+import com.advancedhpbar.AdvancedHpBarPlugin;
 import net.runelite.api.Client;
 import net.runelite.api.MenuEntry;
 import net.runelite.api.Perspective;

@@ -1,4 +1,4 @@
-package com.advancedhpbar;
+package com.advancedhpbar.config;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

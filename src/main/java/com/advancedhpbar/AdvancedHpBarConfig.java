@@ -1,5 +1,7 @@
 package com.advancedhpbar;
 
+import com.advancedhpbar.config.HpBarVisibility;
+import com.advancedhpbar.config.PrayerBarVisibility;
 import net.runelite.client.config.*;
 import java.awt.*;
 
