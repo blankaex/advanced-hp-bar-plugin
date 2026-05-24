@@ -40,6 +40,10 @@ public class NpcHpBarOverlay extends Overlay
     @Override
     public Dimension render(Graphics2D g)
     {
+        if (!config.npcBarEnabled())
+        {
+            return null;
+        }
         final Player localPlayer = client.getLocalPlayer();
         final WorldView topLevelWv = client.getTopLevelWorldView();
         final WorldView playerWv = localPlayer.getWorldView();
