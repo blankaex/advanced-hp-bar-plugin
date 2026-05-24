@@ -40,6 +40,13 @@ public interface AdvancedHpBarConfig extends Config
     )
     String npcSection = "npc";
 
+    @ConfigSection(
+            name = "Other Player HP Bar",
+            description = "Health bar settings for other players",
+            position = 4
+    )
+    String otherPlayerSection = "otherPlayer";
+
     // -------------------------------------------------------------------------
     // General
     // -------------------------------------------------------------------------
@@ -446,6 +453,112 @@ public interface AdvancedHpBarConfig extends Config
             position = 7
     )
     default Color npcHpDamagedColor()
+    {
+        return Color.RED;
+    }
+
+    // -------------------------------------------------------------------------
+    // Other Player HP Bar
+    // -------------------------------------------------------------------------
+    @ConfigItem(
+            keyName = "otherPlayerBarEnabled",
+            name = "Show Other Players' HP Bar",
+            description = "Display health bars over other players",
+            section = otherPlayerSection,
+            position = 0
+    )
+    default boolean otherPlayerBarEnabled()
+    {
+        return true;
+    }
+
+    @ConfigItem(
+            keyName = "otherPlayerBarWidth",
+            name = "Bar Width",
+            description = "Width of the other player health bar in pixels",
+            section = otherPlayerSection,
+            position = 1
+    )
+    @Range(min = 10, max = 300)
+    default int otherPlayerBarWidth()
+    {
+        return 30;
+    }
+
+    @ConfigItem(
+            keyName = "otherPlayerBarHeight",
+            name = "Bar Height",
+            description = "Height of the other player health bar in pixels",
+            section = otherPlayerSection,
+            position = 2
+    )
+    @Range(min = 1, max = 30)
+    default int otherPlayerBarHeight()
+    {
+        return 5;
+    }
+
+    @ConfigItem(
+            keyName = "otherPlayerBarZOffset",
+            name = "Z Offset",
+            description = "Z offset added to the player's logical height for vertical alignment",
+            section = otherPlayerSection,
+            position = 3
+    )
+    @Range(min = -5000, max = 5000)
+    default int otherPlayerBarZOffset()
+    {
+        return 0;
+    }
+
+    @ConfigItem(
+            keyName = "otherPlayerBarXOffset",
+            name = "Horizontal Offset",
+            description = "Horizontal pixel offset of the bar after projection",
+            section = otherPlayerSection,
+            position = 4
+    )
+    @Range(min = -500, max = 500)
+    default int otherPlayerBarXOffset()
+    {
+        return 0;
+    }
+
+    @ConfigItem(
+            keyName = "otherPlayerBarYOffset",
+            name = "Vertical Offset",
+            description = "Vertical pixel offset of the bar after projection",
+            section = otherPlayerSection,
+            position = 5
+    )
+    @Range(min = -500, max = 500)
+    default int otherPlayerBarYOffset()
+    {
+        return 0;
+    }
+
+    @Alpha
+    @ConfigItem(
+            keyName = "otherPlayerHpColor",
+            name = "HP Color",
+            description = "Color of the other player health fill",
+            section = otherPlayerSection,
+            position = 6
+    )
+    default Color otherPlayerHpColor()
+    {
+        return Color.GREEN;
+    }
+
+    @Alpha
+    @ConfigItem(
+            keyName = "otherPlayerHpDamagedColor",
+            name = "HP Damaged Color",
+            description = "Color shown for the damaged (missing) portion of other player HP",
+            section = otherPlayerSection,
+            position = 7
+    )
+    default Color otherPlayerHpDamagedColor()
     {
         return Color.RED;
     }
