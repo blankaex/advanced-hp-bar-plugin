@@ -367,6 +367,18 @@ public interface AdvancedHpBarConfig extends Config
     // NPC HP Bar
     // -------------------------------------------------------------------------
     @ConfigItem(
+            keyName = "npcBarEnabled",
+            name = "Show NPCs' HP Bar",
+            description = "Display health bars over NPCs",
+            section = npcSection,
+            position = 0
+    )
+    default boolean npcBarEnabled()
+    {
+        return true;
+    }
+
+    @ConfigItem(
             keyName = "npcBarWidth",
             name = "NPC Bar Width",
             description = "Width of the NPC health bar in pixels",
