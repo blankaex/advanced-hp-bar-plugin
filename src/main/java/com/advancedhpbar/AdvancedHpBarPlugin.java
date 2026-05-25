@@ -1,6 +1,7 @@
 package com.advancedhpbar;
 
 import com.advancedhpbar.overlay.AdvancedHpBarOverlay;
+import com.advancedhpbar.overlay.DebugOverlay;
 import com.advancedhpbar.overlay.NpcHpBarOverlay;
 import com.advancedhpbar.overlay.OtherPlayerHpBarOverlay;
 import com.advancedhpbar.sprite.BlankHpBarOverride;
@@ -53,6 +54,9 @@ public class AdvancedHpBarPlugin extends Plugin
     @Inject
     private OtherPlayerHpBarOverlay otherPlayerHpBarOverlay;
 
+    @Inject
+    private DebugOverlay debugOverlay;
+
     private long lastTickTime;
 
     @Override
@@ -63,6 +67,7 @@ public class AdvancedHpBarPlugin extends Plugin
         clientThread.invoke(this::applyHealthBarOverrides);
         overlayManager.add(npcHpBarOverlay);
         overlayManager.add(otherPlayerHpBarOverlay);
+        overlayManager.add(debugOverlay);
     }
 
     @Override
@@ -71,6 +76,7 @@ public class AdvancedHpBarPlugin extends Plugin
         overlayManager.remove(overlay);
         overlayManager.remove(npcHpBarOverlay);
         overlayManager.remove(otherPlayerHpBarOverlay);
+        overlayManager.remove(debugOverlay);
         clientThread.invoke(() ->
         {
             spriteManager.removeSpriteOverrides(BlankHpBarOverride.values());
