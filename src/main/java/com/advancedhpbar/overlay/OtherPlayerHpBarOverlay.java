@@ -30,7 +30,7 @@ public class OtherPlayerHpBarOverlay extends Overlay
         this.client = client;
         this.config = config;
         setPosition(OverlayPosition.DYNAMIC);
-        setPriority(Overlay.PRIORITY_HIGH);
+        setPriority(Overlay.PRIORITY_LOW);
         setLayer(OverlayLayer.UNDER_WIDGETS);
     }
 
