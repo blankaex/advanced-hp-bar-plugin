@@ -47,6 +47,13 @@ public interface AdvancedHpBarConfig extends Config
     )
     String otherPlayerSection = "otherPlayer";
 
+    @ConfigSection(
+            name= "Debug Mode",
+            description = "Tools to help development",
+            position = 5
+    )
+    String debugModeSection = "debugMode";
+
     // -------------------------------------------------------------------------
     // General
     // -------------------------------------------------------------------------
@@ -573,5 +580,20 @@ public interface AdvancedHpBarConfig extends Config
     default Color otherPlayerHpDamagedColor()
     {
         return Color.RED;
+    }
+
+    // -------------------------------------------------------------------------
+    // Debug Mode
+    // -------------------------------------------------------------------------
+    @ConfigItem(
+            keyName = "debugModeEnabled",
+            name = "Enable Debug Mode",
+            description = "Display NPC IDs",
+            section = debugModeSection,
+            position = 0
+    )
+    default boolean debugModeEnabled()
+    {
+        return false;
     }
 }
