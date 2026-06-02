@@ -251,10 +251,18 @@ public enum NpcHpBarOverride
     TUMEKENS_WARDEN_DAMAGED(11762, 125, 0, true),
     TUMEKENS_WARDEN_INVULNERABLE(11764, 125, 0, true),
 
+    // SKILLING
     // SAILING
     RAFT(15186, 100, 10, true),
     SKIFF(15187, 100, 10, true),
     SLOOP(15188, 100, 10, true),
+    CRYSTAL_EXTRACTOR(15111, 0, 0, false),
+
+    // MIXOLOGY
+    AGITATOR_RETORT_ALEMBIC(13918,0,0,false),
+
+    // CRASHED STAR
+    CRASHED_STAR(10629, 0, 0, false)
     ;
 
     private final int npcId;
