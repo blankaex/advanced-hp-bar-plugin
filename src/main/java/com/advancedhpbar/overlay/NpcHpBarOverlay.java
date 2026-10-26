@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import javax.inject.Inject;
 
 import com.advancedhpbar.AdvancedHpBarConfig;
+import com.advancedhpbar.AdvancedHpBarPlugin;
 import com.advancedhpbar.sprite.NpcHpBarOverride;
 import net.runelite.api.Actor;
 import net.runelite.api.Client;
@@ -117,7 +118,8 @@ public class NpcHpBarOverlay extends Overlay
         final int barHeight = config.npcBarHeight();
 
         final int x = canvasPoint.getX() + config.npcBarXOffset() - (barWidth / 2);
-        final int y = canvasPoint.getY() + config.npcBarYOffset() - 10 - heightOffset;
+        final int y = canvasPoint.getY() + config.npcBarYOffset() - 10 - heightOffset
+                - AdvancedHpBarPlugin.getOverheadTextHealthBarShift(npc);
 
         final double fraction = Math.max(0.0, Math.min(1.0,
                 (double) healthRatio / (double) healthScale));

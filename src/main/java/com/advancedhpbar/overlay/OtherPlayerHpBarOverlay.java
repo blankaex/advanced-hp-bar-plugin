@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import javax.inject.Inject;
 
 import com.advancedhpbar.AdvancedHpBarConfig;
+import com.advancedhpbar.AdvancedHpBarPlugin;
 import net.runelite.api.Client;
 import net.runelite.api.Player;
 import net.runelite.api.Point;
@@ -105,7 +106,8 @@ public class OtherPlayerHpBarOverlay extends Overlay
         }
 
         final int x = canvasPoint.getX() + config.otherPlayerBarXOffset() - (barWidth / 2);
-        final int y = canvasPoint.getY() + config.otherPlayerBarYOffset() - 10;
+        final int y = canvasPoint.getY() + config.otherPlayerBarYOffset() - 10
+                - AdvancedHpBarPlugin.getOverheadTextHealthBarShift(player);
 
         final double fraction = Math.max(0.0, Math.min(1.0,
                 (double) healthRatio / (double) healthScale));

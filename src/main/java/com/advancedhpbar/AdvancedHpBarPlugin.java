@@ -9,6 +9,7 @@ import com.google.inject.Provides;
 import java.io.InputStream;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.Actor;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
 import net.runelite.api.events.GameStateChanged;
@@ -30,6 +31,8 @@ import net.runelite.client.plugins.itemstats.ItemStatPlugin;
 @PluginDependency(ItemStatPlugin.class)
 public class AdvancedHpBarPlugin extends Plugin
 {
+    private static final int OVERHEAD_TEXT_HEIGHT = 12;
+
     @Inject
     private Client client;
 
@@ -139,6 +142,21 @@ public class AdvancedHpBarPlugin extends Plugin
     public long millisSinceTick()
     {
         return System.currentTimeMillis() - lastTickTime;
+    }
+
+    /**
+     * Gets the number of pixels the health bar should be raised for the
+     * given actor's currently visible overhead text.
+     */
+    public static int getOverheadTextHealthBarShift(Actor actor)
+    {
+        final String overheadText = actor.getOverheadText();
+        if (overheadText == null || overheadText.isEmpty() || actor.getOverheadCycle() <= 0)
+        {
+            return 0;
+        }
+
+        return OVERHEAD_TEXT_HEIGHT;
     }
 
     @Provides
